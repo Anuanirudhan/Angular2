@@ -1,0 +1,47 @@
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		{{pageTitle}}
+	</div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-md-2">Search by:</div>
+			<div class="col-md-4">
+				<input type="text" name="" [(ngModel)] = 'searchCriteria'>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<h3>Search by: {{searchCriteria}}</h3>
+			</div>
+		</div>
+		
+	</div>
+	<div class="table-responsive">
+		<table class="table" *ngIf= 'events && events.length' >
+			<thead>
+				<tr>
+					<th>
+						<button class="btn btn-primary" (click) = 'toggleImage()' >     {{showImage? 'Hide' : 'Show'}} Images
+						</button>
+					</th>
+					<th>Event</th>
+					<th>code</th>
+					<th>date</th>
+					<th>fee</th>
+					<th>rating</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor = '#event of events' >
+					<td> <img [src] = 'event.imageUrl' [style.width.px] = 'imageWidth' *ngIf = 'showImage' ></td>
+					<td>{{event.name}}</td>
+					<td>{{event.code}}</td>
+					<td>{{event.date}}</td>
+					<td>{{event.fee | currency: 'USD'}}</td>
+					<td>{{event.rating}}</td>
+				</tr>
+				
+			</tbody>
+		</table>		
+	</div>
+</div>
